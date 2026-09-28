@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sweet House — Luxury Bakery</title>
+  <meta name="description" content="Sweet House — handcrafted cakes, pastries and desserts.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --dark: #1d1714;
+      --dark-2: #261d19;
+      --cream: #f7f1e8;
+      --cream-2: #efe5d7;
+      --gold: #c7a77a;
+      --text: #332923;
+      --muted: #8c7d70;
+      --white: #ffffff;
+      --border: rgba(255,255,255,.12);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body.fa {
+      font-family: "Vazirmatn", sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 22px 5%;
+      transition: .3s;
+    }
+
+    header.scrolled {
+      background: rgba(29,23,20,.94);
+      backdrop-filter: blur(16px);
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    nav {
+      max-width: 1280px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    body.fa .logo {
+      font-family: "Vazirmatn", sans-serif;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      list-style: none;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      opacity: .9;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-btn,
+    .cart-btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: white;
+      padding: 9px 14px;
+      border-radius: 50px;
+    }
+
+    .lang-btn:hover,
+    .cart-btn:hover {
+      background: white;
+      color: var(--dark);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(20,14,12,.88), rgba(20,14,12,.35)),
+        url("https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=2200&q=90")
+        center/cover no-repeat;
+      color: white;
+    }
+
+    .hero-content {
+      width: min(1280px, 90%);
+      margin: auto;
+      padding-top: 80px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(55px, 8vw, 110px);
+      line-height: .96;
+      max-width: 800px;
+      font-weight: 600;
+    }
+
+    body.fa .hero h1 {
+      font-family: "Vazirmatn", sans-serif;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      max-width: 550px;
+      margin: 28px 0;
+      font-size: 17px;
+      line-height: 1.8;
+      color: rgba(255,255,255,.78);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 23px;
+      border-radius: 50px;
+      border: 1px solid transparent;
+      transition: .25s;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background: var(--cream);
+      color: var(--dark);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: white;
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,.3);
+      color: white;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,.1);
+    }
+
+    /* =========================
+       GENERAL
+    ========================= */
+
+    section {
+      padding: 110px 5%;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: auto;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 45px;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: 1;
+    }
+
+    body.fa .section-title {
+      font-family: "Vazirmatn", sans-serif;
+      line-height: 1.3;
+    }
+
+    .section-description {
+      max-width: 450px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* =========================
+       CATEGORIES
+    ========================= */
+
+    .categories {
+      background: var(--cream);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .category {
+      position: relative;
+      height: 350px;
+      overflow: hidden;
+      border-radius: 4px;
+      color: white;
+    }
+
+    .category img {
+      height: 100%;
+      object-fit: cover;
+      transition: .5s;
+    }
+
+    .category:hover img {
+      transform: scale(1.06);
+    }
+
+    .category::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 35%, rgba(0,0,0,.78));
+    }
+
+    .category-content {
+      position: absolute;
+      z-index: 2;
+      bottom: 25px;
+      left: 25px;
+      right: 25px;
+    }
+
+    .category h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+
+    body.fa .category h3 {
+      font-family: "Vazirmatn", sans-serif;
+    }
+
+    .category span {
+      font-size: 13px;
+      opacity: .75;
+    }
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products {
+      background: #fffaf3;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .product-card {
+      background: white;
+      overflow: hidden;
+      border-radius: 5px;
+      transition: .3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 50px rgba(54,35,22,.10);
+    }
+
+    .product-image {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: .5s;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--dark);
+      color: white;
+      padding: 6px 11px;
+      border-radius: 50px;
+      font-size: 11px;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    body.fa .product-info h3 {
+      font-family: "Vazirmatn", sans-serif;
+    }
+
+    .product-info p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-weight: 700;
+    }
+
+    .add-btn {
+      border: 0;
+      background: var(--dark);
+      color: white;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 20px;
+    }
+
+    .add-btn:hover {
+      background: var(--gold);
+    }
+
+    /* =========================
+       STORY
+    ========================= */
+
+    .story {
+      background: var(--dark);
+      color: white;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .story-image {
+      height: 600px;
+      overflow: hidden;
+    }
+
+    .story-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .story .section-title {
+      margin-bottom: 25px;
+    }
+
+    .story-text {
+      color: rgba(255,255,255,.65);
+      line-height: 2;
+      margin-bottom: 30px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 45px;
+      margin-top: 35px;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: 38px;
+      color: var(--gold);
+    }
+
+    body.fa .stat strong {
+      font-family: "Vazirmatn", sans-serif;
+    }
+
+    .stat span {
+      font-size: 12px;
+      color: rgba(255,255,255,.55);
+    }
+
+    /* =========================
+       CUSTOM CAKE
+    ========================= */
+
+    .custom {
+      background: var(--cream-2);
+    }
+
+    .custom-box {
+      background: var(--dark);
+      color: white;
+      padding: 70px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .custom-box img {
+      height: 470px;
+      object-fit: cover;
+    }
+
+    .custom-content h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(40px, 5vw, 65px);
+      margin-bottom: 20px;
+    }
+
+    body.fa .custom-content h2 {
+      font-family: "Vazirmatn", sans-serif;
+    }
+
+    .custom-content p {
+      color: rgba(255,255,255,.65);
+      line-height: 1.9;
+      margin-bottom: 28px;
+    }
+
+    /* =========================
+       TESTIMONIALS
+    ========================= */
+
+    .reviews {
+      background: #fffaf3;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .review {
+      background: white;
+      padding: 35px;
+      border: 1px solid #eee5da;
+    }
+
+    .stars {
+      color: var(--gold);
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .review p {
+      line-height: 1.9;
+      color: #66584f;
+      margin-bottom: 25px;
+    }
+
+    .review strong {
+      font-size: 14px;
+    }
+
+    /* =========================
+       GALLERY
+    ========================= */
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .gallery div {
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .gallery img {
+      height: 100%;
+      object-fit: cover;
+      transition: .5s;
+    }
+
+    .gallery div:hover img {
+      transform: scale(1.07);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 80px 5% 30px;
+    }
+
+    .footer-grid {
+      max-width: 1280px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 60px;
+    }
+
+    .footer-brand h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    body.fa .footer-brand h2 {
+      font-family: "Vazirmatn", sans-serif;
+    }
+
+    .footer-brand p,
+    footer li {
+      color: rgba(255,255,255,.55);
+      line-height: 2;
+      font-size: 14px;
+    }
+
+    footer h4 {
+      margin-bottom: 20px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin-bottom: 7px;
+    }
+
+    .copyright {
+      max-width: 1280px;
+      margin: auto;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+      color: rgba(255,255,255,.35);
+      font-size: 12px;
+    }
+
+    /* =========================
+       RTL
+    ========================= */
+
+    body.rtl .section-head,
+    body.rtl .product-bottom {
+      direction: rtl;
+    }
+
+    body.rtl .category-content {
+      left: auto;
+      right: 25px;
+    }
+
+    body.rtl .tag {
+      left: auto;
+      right: 14px;
+    }
+
+    body.rtl .hero-content {
+      text-align: right;
+    }
+
+    body.rtl .hero p {
+      margin-right: 0;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 1000px) {
+      .nav-links {
+        display: none;
+      }
+
+      .category-grid,
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .story-grid,
+      .custom-box {
+        grid-template-columns: 1fr;
+      }
+
+      .story-image {
+        height: 450px;
+      }
+
+      .custom-box {
+        padding: 40px;
+      }
+
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 16px 5%;
+      }
+
+      .logo {
+        font-size: 23px;
+      }
+
+      .hero {
+        min-height: 90vh;
+      }
+
+      .hero h1 {
+        font-size: 52px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      section {
+        padding: 75px 5%;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-description {
+        margin-top: 20px;
+      }
+
+      .category-grid,
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category {
+        height: 300px;
+      }
+
+      .product-image {
+        height: 330px;
+      }
+
+      .story-image {
+        height: 350px;
+      }
+
+      .custom-box {
+        padding: 25px;
+        gap: 35px;
+      }
+
+      .custom-box img {
+        height: 320px;
+      }
+
+      .stats {
+        gap: 25px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .gallery div {
+        height: 200px;
+      }
+
+      .lang-btn,
+      .cart-btn {
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header id="header">
+    <nav>
+
+      <a href="#" class="logo">Sweet House</a>
+
+      <ul class="nav-links">
+        <li><a href="#home" data-en="Home" data-fa="خانه">Home</a></li>
+        <li><a href="#shop" data-en="Shop" data-fa="فروشگاه">Shop</a></li>
+        <li><a href="#story" data-en="Our Story" data-fa="داستان ما">Our Story</a></li>
+        <li><a href="#custom" data-en="Custom Cake" data-fa="کیک سفارشی">Custom Cake</a></li>
+        <li><a href="#contact" data-en="Contact" data-fa="تماس">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="lang-btn" id="langBtn">FA</button>
+        <button class="cart-btn" onclick="showCart()">🛒 <span id="cartCount">0</span></button>
+      </div>
+
+    </nav>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="hero-content">
+
+        <div class="eyebrow"
+             data-en="Handcrafted with love"
+             data-fa="با عشق و ظرافت ساخته شده">
+          Handcrafted with love
+        </div>
+
+        <h1 data-en="A little sweetness for every moment."
+            data-fa="برای هر لحظه، کمی شیرینی.">
+          A little sweetness for every moment.
+        </h1>
+
+        <p data-en="Discover handcrafted cakes, pastries and desserts made with premium ingredients and timeless recipes."
+           data-fa="کیک‌ها، شیرینی‌ها و دسرهای دست‌ساز ما را با بهترین مواد اولیه و دستورهای خاص تجربه کنید.">
+          Discover handcrafted cakes, pastries and desserts made with premium ingredients and timeless recipes.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#shop" class="btn btn-primary"
+             data-en="Explore Collection"
+             data-fa="مشاهده محصولات">
+            Explore Collection
+          </a>
+
+          <a href="#custom" class="btn btn-outline"
+             data-en="Create Your Cake"
+             data-fa="کیک سفارشی شما">
+            Create Your Cake
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================== -->
+
+    <section class="categories">
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div>
+            <div class="eyebrow"
+                 data-en="Discover"
+                 data-fa="کشف کنید">
+              Discover
+            </div>
+
+            <h2 class="section-title"
+                data-en="Something for every taste."
+                data-fa="برای هر سلیقه‌ای">
+              Something for every taste.
+            </h2>
+          </div>
+
+          <p class="section-description"
+             data-en="From elegant celebration cakes to delicate pastries, every piece is made to be remembered."
+             data-fa="از کیک‌های مجلسی و خاص تا شیرینی‌های ظریف؛ هر محصول برای ساختن یک خاطره شیرین آماده می‌شود.">
+            From elegant celebration cakes to delicate pastries, every piece is made to be remembered.
+          </p>
+
+        </div>
+
+
+        <div class="category-grid">
+
+          <a class="category" href="#shop">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85">
+            <div class="category-content">
+              <h3 data-en="Cakes" data-fa="کیک‌ها">Cakes</h3>
+              <span data-en="Celebration & Signature"
+                    data-fa="مجلسی و خاص">
+                Celebration & Signature
+              </span>
+            </div>
+          </a>
+
+
+          <a class="category" href="#shop">
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1000&q=85">
+            <div class="category-content">
+              <h3 data-en="Pastries" data-fa="شیرینی‌ها">Pastries</h3>
+              <span data-en="Fresh every morning"
+                    data-fa="هر روز تازه">
+                Fresh every morning
+              </span>
+            </div>
+          </a>
+
+
+          <a class="category" href="#shop">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1000&q=85">
+            <div class="category-content">
+              <h3 data-en="Desserts" data-fa="دسرها">Desserts</h3>
+              <span data-en="Small moments of joy"
+                    data-fa="لحظه‌های کوچک شیرین">
+                Small moments of joy
+              </span>
+            </div>
+          </a>
+
+
+          <a class="category" href="#custom">
+            <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1000&q=85">
+            <div class="category-content">
+              <h3 data-en="Custom" data-fa="سفارشی">Custom</h3>
+              <span data-en="Made just for you"
+                    data-fa="دقیقاً برای شما">
+                Made just for you
+              </span>
+            </div>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRODUCTS
+    ========================== -->
+
+    <section class="products" id="shop">
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div>
+            <div class="eyebrow"
+                 data-en="Best sellers"
+                 data-fa="پرفروش‌ها">
+              Best sellers
+            </div>
+
+            <h2 class="section-title"
+                data-en="Made to make you smile."
+                data-fa="برای لبخند شما">
+              Made to make you smile.
+            </h2>
+          </div>
+
+          <p class="section-description"
+             data-en="Our most loved creations, prepared fresh with carefully selected ingredients."
+             data-fa="محبوب‌ترین محصولات ما که هر روز با مواد اولیه منتخب و تازه آماده می‌شوند.">
+            Our most loved creations, prepared fresh with carefully selected ingredients.
+          </p>
+
+        </div>
+
+
+        <div class="product-grid">
+
+          <article class="product-card">
+
+            <div class="product-image">
+              <span class="tag"
+                    data-en="Popular"
+                    data-fa="محبوب">
+                Popular
+              </span>
+
+              <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85">
+            </div>
+
+            <div class="product-info">
+
+              <h3 data-en="Chocolate Cake"
+                  data-fa="کیک شکلاتی">
+                Chocolate Cake
+              </h3>
+
+              <p data-en="Rich chocolate sponge with silky ganache."
+                 data-fa="کیک شکلاتی نرم با گاناش شکلاتی ابریشمی.">
+                Rich chocolate sponge with silky ganache.
+              </p>
+
+              <div class="product-bottom">
+                <span class="price">$28</span>
+                <button class="add-btn" onclick="addToCart()">+</button>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="product-card">
+
+            <div class="product-image">
+              <span class="tag"
+                    data-en="New"
+                    data-fa="جدید">
+                New
+              </span>
+
+              <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&w=900&q=85">
+            </div>
+
+            <div class="product-info">
+
+              <h3 data-en="Berry Cake"
+                  data-fa="کیک بری">
+                Berry Cake
+              </h3>
+
+              <p data-en="Vanilla cream, fresh berries and soft sponge."
+                 data-fa="خامه وانیلی، بری‌های تازه و کیک اسفنجی نرم.">
+                Vanilla cream, fresh berries and soft sponge.
+              </p>
+
+              <div class="product-bottom">
+                <span class="price">$32</span>
+                <button class="add-btn" onclick="addToCart()">+</button>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="product-card">
+
+            <div class="product-image">
+
+              <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85">
+
+            </div>
+
+            <div class="product-info">
+
+              <h3 data-en="French Croissant"
+                  data-fa="کروسان فرانسوی">
+                French Croissant
+              </h3>
+
+              <p data-en="Buttery, flaky and baked fresh every morning."
+                 data-fa="ترد، کره‌ای و تازه‌پخت هر صبح.">
+                Buttery, flaky and baked fresh every morning.
+              </p>
+
+              <div class="product-bottom">
+                <span class="price">$6</span>
+                <button class="add-btn" onclick="addToCart()">+</button>
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <article class="product-card">
+
+            <div class="product-image">
+
+              <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85">
+
+            </div>
+
+            <div class="product-info">
+
+              <h3 data-en="Pistachio Dessert"
+                  data-fa="دسر پسته‌ای">
+                Pistachio Dessert
+              </h3>
+
+              <p data-en="Creamy pistachio mousse with delicate layers."
+                 data-fa="موس پسته‌ای خامه‌ای با لایه‌های ظریف.">
+                Creamy pistachio mousse with delicate layers.
+              </p>
+
+              <div class="product-bottom">
+                <span class="price">$12</span>
+                <button class="add-btn" onclick="addToCart()">+</button>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         STORY
+    ========================== -->
+
+    <section class="story" id="story">
+
+      <div class="container story-grid">
+
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1556217477-d325251ece38?auto=format&fit=crop&w=1200&q=85">
+        </div>
+
+        <div>
+
+          <div class="eyebrow"
+               data-en="Our story"
+               data-fa="داستان ما">
+            Our story
+          </div>
+
+          <h2 class="section-title"
+              data-en="Made slowly. Loved deeply."
+              data-fa="آرام ساخته می‌شود، عمیقاً دوست داشته می‌شود.">
+            Made slowly. Loved deeply.
+          </h2>
+
+          <p class="story-text"
+             data-en="Sweet House began with a simple idea: desserts should feel personal. We combine classic techniques, premium ingredients and a modern aesthetic to create something worth sharing."
+             data-fa="Sweet House با یک ایده ساده شروع شد: دسرها باید حس شخصی داشته باشند. ما تکنیک‌های کلاسیک، مواد اولیه باکیفیت و طراحی مدرن را ترکیب می‌کنیم تا چیزی خلق کنیم که ارزش به اشتراک گذاشتن داشته باشد.">
+            Sweet House began with a simple idea: desserts should feel personal. We combine classic techniques, premium ingredients and a modern aesthetic to create something worth sharing.
+          </p>
+
+          <a href="#contact" class="btn btn-primary"
+             data-en="Meet Sweet House"
+             data-fa="با Sweet House آشنا شوید">
+            Meet Sweet House
+          </a>
+
+          <div class="stats">
+
+            <div class="stat">
+              <strong>12+</strong>
+              <span data-en="Years of craft"
+                    data-fa="سال تجربه">
+                Years of craft
+              </span>
+            </div>
+
+            <div class="stat">
+              <strong>50K+</strong>
+              <span data-en="Happy customers"
+                    data-fa="مشتری راضی">
+                Happy customers
+              </span>
+            </div>
+
+            <div class="stat">
+              <strong>100%</strong>
+              <span data-en="Made with care"
+                    data-fa="ساخته‌شده با عشق">
+                Made with care
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CUSTOM CAKE
+    ========================== -->
+
+    <section class="custom" id="custom">
+
+      <div class="container">
+
+        <div class="custom-box">
+
+          <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=1200&q=85">
+
+          <div class="custom-content">
+
+            <div class="eyebrow"
+                 data-en="Made for your moment"
+                 data-fa="برای لحظه خاص شما">
+              Made for your moment
+            </div>
+
+            <h2 data-en="Your cake. Your story."
+                data-fa="کیک شما، داستان شما.">
+              Your cake. Your story.
+            </h2>
+
+            <p data-en="Tell us what you imagine and we'll turn it into a beautiful handcrafted cake designed especially for your celebration."
+               data-fa="چیزی که در ذهن دارید را به ما بگویید و ما آن را به یک کیک دست‌ساز زیبا تبدیل می‌کنیم که مخصوص جشن شما طراحی شده است.">
+              Tell us what you imagine and we'll turn it into a beautiful handcrafted cake designed especially for your celebration.
+            </p>
+
+            <a href="#contact" class="btn btn-primary"
+               data-en="Start Your Request"
+               data-fa="شروع سفارش">
+              Start Your Request
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         REVIEWS
+    ========================== -->
+
+    <section class="reviews">
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div>
+            <div class="eyebrow"
+                 data-en="Kind words"
+                 data-fa="نظر مشتریان">
+              Kind words
+            </div>
+
+            <h2 class="section-title"
+                data-en="Loved by sweet people."
+                data-fa="دوست‌داشتنی برای آدم‌های شیرین">
+              Loved by sweet people.
+            </h2>
+          </div>
+
+        </div>
+
+
+        <div class="review-grid">
+
+          <div class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p data-en="The cake looked absolutely beautiful and tasted even better. Everyone at the party asked where it was from."
+               data-fa="کیک فوق‌العاده زیبا بود و مزه‌اش حتی بهتر. همه مهمان‌ها پرسیدند از کجا سفارش داده بودیم.">
+              The cake looked absolutely beautiful and tasted even better. Everyone at the party asked where it was from.
+            </p>
+
+            <strong>— Emma R.</strong>
+
+          </div>
+
+
+          <div class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p data-en="Beautiful packaging, amazing flavor and perfect attention to detail. Sweet House is now my go-to bakery."
+               data-fa="بسته‌بندی زیبا، طعم فوق‌العاده و توجه عالی به جزئیات. Sweet House انتخاب همیشگی من شده.">
+              Beautiful packaging, amazing flavor and perfect attention to detail. Sweet House is now my go-to bakery.
+            </p>
+
+            <strong>— Daniel M.</strong>
+
+          </div>
+
+
+          <div class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p data-en="I ordered a custom cake and they brought my idea to life perfectly. Absolutely recommend."
+               data-fa="یک کیک سفارشی سفارش دادم و دقیقاً چیزی که تصور کرده بودم را ساختند. واقعاً پیشنهادش می‌کنم.">
+              I ordered a custom cake and they brought my idea to life perfectly. Absolutely recommend.
+            </p>
+
+            <strong>— Sofia L.</strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         GALLERY
+    ========================== -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div>
+            <div class="eyebrow"
+                 data-en="Follow along"
+                 data-fa="ما را دنبال کنید">
+              Follow along
+            </div>
+
+            <h2 class="section-title">
+              @sweethouse
+            </h2>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="gallery">
+
+        <div>
+          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=85">
+        </div>
+
+        <div>
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=85">
+        </div>
+
+        <div>
+          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=85">
+        </div>
+
+        <div>
+          <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&w=800&q=85">
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer id="contact">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+
+        <h2>Sweet House</h2>
+
+        <p data-en="A modern bakery creating beautiful moments, one dessert at a time."
+           data-fa="یک شیرینی‌فروشی مدرن برای ساختن لحظه‌های زیبا، یک دسر در هر بار.">
+          A modern bakery creating beautiful moments, one dessert at a time.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h4 data-en="Explore"
+            data-fa="دسترسی">
+          Explore
+        </h4>
+
+        <ul>
+          <li><a href="#shop" data-en="Shop" data-fa="فروشگاه">Shop</a></li>
+          <li><a href="#story" data-en="Our Story" data-fa="داستان ما">Our Story</a></li>
+          <li><a href="#custom" data-en="Custom Cake" data-fa="کیک سفارشی">Custom Cake</a></li>
+        </ul>
+
+      </div>
+
+
+      <div>
+
+        <h4 data-en="Contact"
+            data-fa="تماس">
+          Contact
+        </h4>
+
+        <ul>
+          <li>hello@sweethouse.com</li>
+          <li>+1 234 567 890</li>
+          <li data-en="Mon — Sat / 9AM — 8PM"
+              data-fa="شنبه تا جمعه / ۹ صبح تا ۸ شب">
+            Mon — Sat / 9AM — 8PM
+          </li>
+        </ul>
+
+      </div>
+
+
+      <div>
+
+        <h4 data-en="Follow"
+            data-fa="دنبال کنید">
+          Follow
+        </h4>
+
+        <ul>
+          <li>Instagram</li>
+          <li>Facebook</li>
+          <li>TikTok</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+
+    <div class="copyright">
+      © 2026 Sweet House. Demo website — designed for portfolio.
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    let cartCount = 0;
+
+    const langBtn = document.getElementById("langBtn");
+
+    function setLanguage(lang) {
+
+      const elements = document.querySelectorAll("[data-en][data-fa]");
+
+      elements.forEach(element => {
+        element.textContent = element.getAttribute(
+          lang === "fa" ? "data-fa" : "data-en"
+        );
+      });
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "fa" ? "rtl" : "ltr";
+
+      document.body.classList.toggle("fa", lang === "fa");
+      document.body.classList.toggle("rtl", lang === "fa");
+
+      langBtn.textContent = lang === "fa" ? "EN" : "FA";
+
+      localStorage.setItem("sweet-house-language", lang);
+    }
+
+
+    langBtn.addEventListener("click", () => {
+
+      const current =
+        localStorage.getItem("sweet-house-language") || "en";
+
+      setLanguage(current === "en" ? "fa" : "en");
+
+    });
+
+
+    function addToCart() {
+
+      cartCount++;
+
+      document.getElementById("cartCount").textContent = cartCount;
+
+      alert(
+        document.documentElement.lang === "fa"
+        ? "محصول به سبد خرید اضافه شد 🍰"
+        : "Added to cart 🍰"
+      );
+
+    }
+
+
+    function showCart() {
+
+      alert(
+        document.documentElement.lang === "fa"
+        ? `تعداد محصولات سبد خرید: ${cartCount}`
+        : `Items in your cart: ${cartCount}`
+      );
+
+    }
+
+
+    window.addEventListener("scroll", () => {
+
+      const header = document.getElementById("header");
+
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+
+    });
+
+
+    const savedLanguage =
+      localStorage.getItem("sweet-house-language") || "en";
+
+    setLanguage(savedLanguage);
+
+  </script>
+
+</body>
+</html>
